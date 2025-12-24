@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para Ti 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Fuente bonita de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fcebb6;
+      --bg-soft: #fcebb6;
+      --primary: #f472b6;
+      --primary-soft: #f9a8d4;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+      --card: #020617;
+      --accent: #38bdf8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #6f0f9c 0, #2d0140 45%, #010326 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(27, 37, 62, 0.85);
+      border-radius: 1.5rem;
+      box-shadow:
+        0 20px 40px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(176, 190, 209, 0.15);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
+
+    header {
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      background: radial-gradient(circle at top, #192639 0, #020617 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Circulitos decorativos */
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    header::before {
+      width: 220px;
+      height: 220px;
+      background: rgba(244, 114, 182, 0.35);
+      top: -60px;
+      left: -60px;
+    }
+
+    header::after {
+      width: 260px;
+      height: 260px;
+      background: rgba(56, 189, 248, 0.3);
+      bottom: -80px;
+      right: -40px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(44, 55, 66, 0.212);
+      color: var(--primary-soft);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag-dot {
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 3rem);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.7rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 span {
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      max-width: 34rem;
+      margin: 0.5rem auto 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .date-pill {
+      display: inline-flex;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      gap: 0.4rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .date-pill-dot {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    main {
+      padding: 1.8rem 1.5rem 2rem;
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), #020617);
+    }
+
+    @media (min-width: 768px) {
+      main {
+        padding: 2.2rem 2rem 2.5rem;
+      }
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), var(--card));
+      border-radius: 1.25rem;
+      padding: 1.3rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 14px 25px rgba(15, 23, 42, 0.8);
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.9rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .heart {
+      font-size: 1.2rem;
+      filter: drop-shadow(0 0 8px rgba(244, 114, 182, 0.9));
+    }
+
+    .paragraph {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .highlight {
+      color: var(--primary-soft);
+      font-weight: 500;
+    }
+
+    .list {
+      list-style: none;
+      margin-top: 0.9rem;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .bullet {
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at top, var(--accent), var(--primary));
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    }
+
+    .quote {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 2px solid rgba(248, 250, 252, 0.2);
+      padding-left: 0.8rem;
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: var(--primary-soft);
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+    }
+
+    .photo {
+      aspect-ratio: 3 / 4;
+      border-radius: 0.8rem;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    /* Cambia estas imágenes por fotos de ustedes (puedes usar rutas locales) */
+    .photo-1 {
+      background-image: url("Foto1.jpeg")
+    }
+
+    .photo-2 {
+      background-image: url("FOTO\ 2.jpeg");
+    }
+
+    .photo-3 {
+      background-image: url("foto4.jpeg");
+    }
+
+    .photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.65), transparent);
+    }
+
+    .photo-label {
+      position: absolute;
+      bottom: 0.45rem;
+      left: 0.5rem;
+      font-size: 0.7rem;
+      z-index: 1;
+      color: #f9fafb;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 0.7rem;
+      font-size: 0.82rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .timeline-date {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      white-space: nowrap;
+      color: var(--text-muted);
+    }
+
+    .timeline-text {
+      color: var(--text-muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 1.2rem 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #020617;
+    }
+
+    .footer-heart {
+      font-size: 0.9rem;
+      margin: 0 0.25rem;
+    }
+
+    .signature {
+      color: var(--primary-soft);
+      font-weight: 500;
+    }
+
+    .btn {
+      margin-top: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.2);
+      background: radial-gradient(circle at top left, rgba(244, 114, 182, 0.4), rgba(56, 189, 248, 0.3));
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.16s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.9);
+      background: radial-gradient(circle at top left, rgba(244, 114, 182, 0.55), rgba(56, 189, 248, 0.4));
+    }
+
+    .btn span {
+      font-size: 1rem;
+    }
+
+    .note {
+      margin-top: 0.7rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 2rem 1.3rem 1.7rem;
+      }
+      footer {
+        padding-inline: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="tag">
+        <div class="tag-dot"></div>
+        Para la mejor doctora del universo
+      </div>
+
+      <div class="date-pill">
+        <div class="date-pill-dot"></div>
+        Desde &lt;09/04/2021&gt;
+      </div>
+
+      <h1>
+        Para mi <span>ESPOSITA</span>
+      </h1>
+      <p class="subtitle">
+        Mi vida hermosa, se que estoy lejos pero esta es mi forma de plasmar un poquito de todo el amor tan inmenso que tengo por ti...
+        (ya subi de nivel asi que esta vez una pagina web desde 0 JAJAJ) Te amo en todas las vidas que existan 💗 
+      </p>
+    </header>
+
+    <main>
+      <div class="grid">
+        <!-- Columna izquierda: mensaje principal -->
+        <section class="card">
+          <div class="card-title-row">
+            <h2 class="card-title">
+              De mí, para ti
+              <span class="heart">💗</span>
+            </h2>
+            <span class="card-pill">Nuestro pequeño universo</span>
+          </div>
+
+          <p class="paragraph">
+            Quiero desearte <span class="highlight"> feliz navidad</span>, se que no la pudimos pasar juntas
+            pero no sabes lo feliz y afortunada que soy por volverte a tener en mi vida, por volver a estar con <span class="highlight">el amor de mi vida</span>,
+            eres la razon de mis alegrias y mi persona favorita, y no importa que tan mal este mi dia porque con tan solo pensarte todo mejora.
+          </p>
+
+          <ul class="list">
+            <li>
+              <span class="bullet"></span>
+              Me encanta cómo <span class="highlight">me haces sentir paz</span> incluso en medio del caos.
+            </li>
+            <li>
+              <span class="bullet"></span>
+              Admiro la mujer tan  <span class="highlight">Maravillosa y unica que eres</span>.
+            </li>
+            <li>
+              <span class="bullet"></span>
+              Se que yo naci para  <span class="highlight">enamorarme cada dia mas de ti</span>.
+            </li>
+          </ul>
+
+          <div class="quote">
+            "Eres el amor de todos los latidos de mi vida."
+            <span>— Con mucho amor, de Tu mujer</span>
+          </div>
+        </section>
+
+        <!-- Columna derecha: fotos / línea de tiempo / detalles -->
+        <section class="card">
+          <div class="card-title-row">
+            <h2 class="card-title">
+              Me and You & You and Me
+            </h2>
+            <span class="card-pill"> Nosotras ✨</span>
+          </div>
+
+          <!-- Sección de fotos -->
+          <div class="photos">
+            <div class="photo photo-1">
+              <span class="photo-label">Eras, eres y seras siempre tú</span>
+            </div>
+            <div class="photo photo-2">
+              <span class="photo-label">Eres mi lugar feliz, eres mi hogar</span>
+            </div>
+            <div class="photo photo-3">
+              <span class="photo-label">Eres todo lo que quiero para siempre</span>
+            </div>
+          </div>
+
+          <!-- Línea de tiempo: cambia las fechas por las de ustedes -->
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">Día 1</div>
+              <div class="timeline-text">
+                Todo empezó cuando empezaste a juguetear con mi cabello en el clase.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Nos veiamos</div>
+              <div class="timeline-text">
+                Y me daba cuenta que mi corazon nunca iba a ser mio, siempre ha sido todo <span class="highlight">Tuyo</span>.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Hoy</div>
+              <div class="timeline-text">
+                Mi corazon se vuelve a sentir vivo por <span class="highlight">TI</span> y por la idea del por siempre con el amor de mi vida.
+              </div>
+            </div>
+          </div>
+
+          <button class="btn" onclick="mostrarMensaje()">
+            Toca aquí para leer más
+            <span>💌</span>
+          </button>
+
+          <p class="note" id="mensaje-extra" style="display: none;">
+            Esa sensacion de volver a sentirnos como cuando tebiamos 15, con esa conexion tan pura, sencera y tan profunda
+            despues de tantos años, solo me confirma que yo naci para amarte y que la Danna de todas los universos nacio para 
+            amar con todas sus fuerzas a la Carolina de cada uno. Gracias por ser tú, sin filtros, sin máscaras, gracias por ser
+            la mujer que me enloquece de felicidad cada dia y gracias por permitirme <span class="highlight">Amarte toda la vida</span>.
+            Ojalá esta página te recuerde, aunque sea un poquito, lo inmenso que es mi amor por ti. Y por ultimo solo deseo que tengas
+            una muy feliz navidad y que las siguientes pueda verte a esos maravillosos ojos, darte un beso a media noche y hacer de estas fechas laa mas
+            maravillosas por pasarlas con mi esposa. Te amo con mi alma y en todos los universos
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      Hecho con <span class="footer-heart">💖</span> por
+      <span class="signature">Danna banana</span> solo para
+      <span class="signature">mi esposa</span>.
+    </footer>
+  </div>
+
+  <script>
+    // Pequeña interacción: mostrar / ocultar mensaje extra
+    function mostrarMensaje() {
+      const p = document.getElementById("mensaje-extra");
+      const visible = p.style.display === "block";
+      p.style.display = visible ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
